@@ -14,15 +14,15 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
 
  1. Make sure the Pi has the latest updates and software. 
     ```
-     sudo apt-get update
-     sudo apt-get upgrade
+    sudo apt-get update
+    sudo apt-get upgrade
     ```
  2. Install the Sense Hat software package, which provides all the libraries to interact with the Sense Hat.
     ```
-     sudo apt-get install sense-hat
-     sudo reboot
+    sudo apt-get install sense-hat
+    sudo reboot
     ```
- 3. Create the following python script
+ 3. Create the following python script and save it as weatherstation.py
      ```
     from timer import Timer
     from sense_hat import SenseHat
@@ -43,6 +43,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
         humidity = round(sense.get_humidity(), 1)
         date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M") 
     
+        # This creates or opens up a DB
         db = sqlite3.connect('./db/weatherstation.db')
         cursor = db.cursor()
         cursor.execute('INSERT INTO pidata(pressure, temperature, humidity, datum) VALUES(?,?,?,?)', (pressure, temp_calibrated, humidity, date))
@@ -55,4 +56,11 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
         res = os.popen("vcgencmd measure_temp").readline()
         t = float(res.replace("temp=","").replace("'C\n",""))
         return(t)
-     ```
+        
+    # Persist wheater data every 15 mintues
+    rt = Timer(900, persistData) 
+    ```
+4. Test and run your python script 
+    ```
+    sudo python3 weatherstation.py
+    ```
