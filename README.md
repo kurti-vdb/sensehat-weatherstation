@@ -144,7 +144,7 @@ This weatherstation consists of two parts. A python script that reads out all th
     app.use(express.static(www))
     app.listen(9999);
      
-3. Run your node script access the retrieved data on localhost:9999
+3. Run your node script
     ``` 
     $node server.js
     ```
