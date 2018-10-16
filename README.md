@@ -144,7 +144,15 @@ This weatherstation consists of two parts. A python script that reads out all th
     app.use(express.static(www))
     app.listen(9999);
      
-3. Run your node script and access the retrieved data on localhost:9999
+3. Run your node script access the retrieved data on localhost:9999
     ``` 
     $node server.js
+    ```
+4. Access the retrieved data
+
+    ```
+    All data:                        localhost:9999/api/weatherdata
+    Pressure for the last 7 days:    localhost:9999/api/weatherdata/trend/pressure
+    Pressure today:                  localhost:9999/api/weatherdata/trend/pressure/today
+    Temperature today:               localhost:9999/api/weatherdata/trend/temperature/today
     ```
