@@ -37,7 +37,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
     
         temp = round(sense.get_temperature(),1)
         cpu_temp = round(get_cpu_temp(), 1)
-        temp_calibrated = temp - ((cpu_temp - temp)/5.466)
+        temp_calibrated = temp - ((cpu_temp - temp)/5.466) # Temperature correction due to cpu heat
 
         pressure = round(sense.get_pressure(), 1)
         humidity = round(sense.get_humidity(), 1)
@@ -51,7 +51,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
         db.commit()
         db.close()
 
-
+    
     def get_cpu_temp():
     
         res = os.popen("vcgencmd measure_temp").readline()
@@ -65,7 +65,9 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
     ```
     $sudo python3 weatherstation.py
     ```
+
 ## The Node.js part
+
 
 1. Add a weathercontroller.js
     ```
