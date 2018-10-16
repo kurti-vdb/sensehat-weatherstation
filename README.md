@@ -152,6 +152,9 @@ This weatherstation consists of two parts. A python script that reads out all th
 
     ```
     Overview with charts:                 localhost:9999
+    
+    json results:
+    
     All data:                             localhost:9999/api/weatherdata
     Pressure data for the last 7 days:    localhost:9999/api/weatherdata/trend/pressure
     Pressure data today:                  localhost:9999/api/weatherdata/trend/pressure/today
