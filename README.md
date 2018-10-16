@@ -10,7 +10,9 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
  - Sense HAT
  - Ethernet Cable or WiFi Dongle (The Pi 3 has WiFi inbuilt)
  
-## Getting started with the Sense HAT. The Python part
+### Getting started with the Sense HAT. 
+
+## The Python part
 
  1. Make sure the Pi has the latest updates and software. 
     ```
