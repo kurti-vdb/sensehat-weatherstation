@@ -151,8 +151,9 @@ This weatherstation consists of two parts. A python script that reads out all th
 4. Access the retrieved data
 
     ```
-    All data:                        localhost:9999/api/weatherdata
-    Pressure for the last 7 days:    localhost:9999/api/weatherdata/trend/pressure
-    Pressure today:                  localhost:9999/api/weatherdata/trend/pressure/today
-    Temperature today:               localhost:9999/api/weatherdata/trend/temperature/today
+    Overview with charts:                 localhost:9999
+    All data:                             localhost:9999/api/weatherdata
+    Pressure data for the last 7 days:    localhost:9999/api/weatherdata/trend/pressure
+    Pressure data today:                  localhost:9999/api/weatherdata/trend/pressure/today
+    Temperature data today:               localhost:9999/api/weatherdata/trend/temperature/today
     ```
