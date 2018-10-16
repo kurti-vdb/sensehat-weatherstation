@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather data for Leuven - Balk van Beel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
+    <link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+</head>
+
+<body>
+    <div class="container">     
+        <div>                          
+            <div class="row">
+                <h2>List of weather data</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table id="weatherData" class="table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Pressure</th>
+                            <th>Humidity</th>  
+                            <th>Temperature</th>      
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>                                                          
+            <div class="row">                                        
+                <button id="refresh" type="button" class="btn btn-primary">Refresh</button>                 
+            </div>
+            <!--
+            <table 	data-toggle="table"
+				data-search="true"
+				data-pagination="true"
+				data-page-size="20"
+				data-page-list="[20, 50, 100, 200, 1000]"
+				data-url="api/weatherdata"
+				data-sort-name="ID"
+				data-sort-order="desc">
+                <thead>
+                    <tr>
+                        <th data-field="datum" data-sortable="true">Date</th>
+                        <th data-field="pressure" data-sortable="true">Pressure</th>
+                        <th data-field="humidity" data-sortable="true">Humidity</th>
+                        <th data-field="temperature" data-sortable="true">Temperature</th>
+                    </tr>
+                </thead>
+            </table>-->
+        
+        <canvas id="pressureChart" width="400" height="400"></canvas>
+        <canvas id="humidityChart" width="400" height="400"></canvas>
+        <canvas id="temperatureChart" width="400" height="400"></canvas>
+        </div>
+    </div>       
+        
+        <!-- Modal error message -->
+        <div class="modal fade" id="ajax-error-box" role="dialog">
+            <div class="modal-dialog modal-lg" class="background-color: #dff0d8">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <span id="ajax-error">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> 
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>    
+        <script src="/javascripts/ajaxproxy.js"></script> 
+        <script src="/javascripts/weatherdata.js"></script>
+
+        <script type="javascript">
+            
+        </script> 
+
+    </body>
+</html>
