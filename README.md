@@ -13,3 +13,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
 ### Getting started with the Sense HAT
 
  1. Make sure the Pi has the latest updates and software. 
+ ```
+ sudo apt-get update
+ sudo apt-get upgrade
+```
