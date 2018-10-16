@@ -14,13 +14,13 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
 
  1. Make sure the Pi has the latest updates and software. 
     ```
-    sudo apt-get update
-    sudo apt-get upgrade
+    $sudo apt-get update
+    $sudo apt-get upgrade
     ```
  2. Install the Sense Hat software package, which provides all the libraries to interact with the Sense Hat.
     ```
-    sudo apt-get install sense-hat
-    sudo reboot
+    $sudo apt-get install sense-hat
+    $sudo reboot
     ```
  3. Create the following python script and save it as weatherstation.py
      ```
@@ -63,7 +63,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
     ```
 4. Test and run your python script 
     ```
-    sudo python3 weatherstation.py
+    $sudo python3 weatherstation.py
     ```
 ## The Node.js part
 
@@ -141,5 +141,5 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
      
 3. Run your node script:
     ``` 
-    node server.js
+    $node server.js
     ```
