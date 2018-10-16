@@ -2,7 +2,7 @@
 
 A Raspberry Pi Weather Station using the Sense HAT that stores all captured data in a local SQLite DB. You will need a sense HAT and a few other bits of equipment to be able to get this to work.
 
-## Things needed:
+### Things needed:
 
  - Raspberry Pi 2 or 3
  - Micro SD Card or a SD card if you’re using an old version of the Pi.
@@ -10,7 +10,7 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
  - Sense HAT
  - Ethernet Cable or WiFi Dongle (The Pi 3 has WiFi inbuilt)
  
-### Getting started with the Sense HAT
+## Getting started with the Sense HAT. The Python part
 
  1. Make sure the Pi has the latest updates and software. 
     ```
@@ -46,7 +46,8 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
         # This creates or opens up a DB
         db = sqlite3.connect('./db/weatherstation.db')
         cursor = db.cursor()
-        cursor.execute('INSERT INTO pidata(pressure, temperature, humidity, datum) VALUES(?,?,?,?)', (pressure, temp_calibrated, humidity, date))
+        cursor.execute('INSERT INTO pidata(pressure, temperature, humidity, datum) VALUES(?,?,?,?)', 
+            (pressure, temp_calibrated, humidity, date))
         db.commit()
         db.close()
 
@@ -64,3 +65,40 @@ A Raspberry Pi Weather Station using the Sense HAT that stores all captured data
     ```
     sudo python3 weatherstation.py
     ```
+## The Node.js part
+
+1. Add a controller
+    ```
+    module.exports = function(app, db, jsonParser){
+    
+    var fields = ["ID",  "pressure", "temperature", "humidity", "datum"];
+  
+    //  api/weatherdata
+    app.get('/api/weatherdata', function(req, res){ 
+        db.all("SELECT " + fields.join(", ") + " FROM pidata", function(err, rows) {
+            res.json(rows); 
+        });                       
+    });
+
+    //  api/weatherdata/trend/pressure  - Select last 7 days and every nth row (ID % 4 = 0), four in this case
+    app.get('/api/weatherdata/trend/pressure', function(req, res){ 
+        db.all("SELECT pressure, time(datum) AS datum FROM pidata WHERE datum > (SELECT DATETIME('now', 'localtime', '-7 day')) AND ID % 4 = 0", function(err, rows) {
+            res.json(rows); 
+        });                       
+    });
+
+    //  api/weatherdata/trend/pressure/today
+    app.get('/api/weatherdata/trend/pressure/today', function(req, res){ 
+        db.all("SELECT pressure, time(datum) AS datum FROM pidata WHERE  datum >= (SELECT DATETIME('now', 'localtime', '-1 day')) AND datum <=  (SELECT DATETIME('now', 'localtime'))", function(err, rows) {
+            res.json(rows); 
+        });                       
+    });
+    
+    //  api/weatherdata/trend/temperature/today
+    app.get('/api/weatherdata/trend/temperature/today', function(req, res){ 
+        db.all("SELECT temperature, time(datum) AS datum FROM pidata WHERE  datum >= (SELECT DATETIME('now', 'localtime', '-1 day')) AND datum <=  (SELECT DATETIME('now', 'localtime'))", function(err, rows) {
+            res.json(rows); 
+        });                       
+    });
+}
+```
